@@ -1,6 +1,4 @@
 import Reveal from './Reveal'
-import CtaButton from './CtaButton'
-
 const evite = [
   'Depender de leads frios e tráfego caro',
   'Perder clientes antigos por falta de contato',
@@ -80,14 +78,6 @@ export default function Comparison() {
           </Reveal>
         </div>
 
-        <Reveal delay={0.3}>
-          <div className="text-center mt-12">
-            <CtaButton large>QUERO MINHA VAGA NA SALA SECRETA</CtaButton>
-            <p className="text-[10px] text-muted mt-3 uppercase tracking-widest">
-              🔒 100% gratuito · Ao vivo · Vagas limitadas
-            </p>
-          </div>
-        </Reveal>
       </div>
     </section>
   )

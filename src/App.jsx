@@ -6,7 +6,6 @@ import Problem     from './components/Problem'
 import Mechanism   from './components/Mechanism'
 import HowItWorks  from './components/HowItWorks'
 import Offer       from './components/Offer'
-import CtaBreak    from './components/CtaBreak'
 import Comparison  from './components/Comparison'
 import SocialProof from './components/SocialProof'
 import Bio         from './components/Bio'
@@ -41,17 +40,11 @@ export default function App() {
       {/* 08 — O que vai aprender */}
       <Offer />
 
-      {/* 09 — CTA #2 */}
-      <CtaBreak text="QUERO MINHA VAGA NA SALA SECRETA" />
-
       {/* 10 — Comparação: Evite vs Garanta */}
       <Comparison />
 
       {/* 11 — Cases / Resultados reais */}
       <SocialProof />
-
-      {/* 12 — CTA #3 */}
-      <CtaBreak text="GARANTIR MINHA VAGA AGORA" />
 
       {/* 13 — Bio de autoridade */}
       <Bio />

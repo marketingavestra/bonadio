@@ -1,5 +1,4 @@
 import { motion } from 'framer-motion'
-import CtaButton from './CtaButton'
 
 export default function Hero() {
   return (
@@ -59,18 +58,6 @@ export default function Hero() {
             continuam caçando leads frios.
           </motion.p>
 
-          {/* CTA */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.35 }}
-            className="flex flex-col items-start gap-4"
-          >
-            <CtaButton large>QUERO MINHA VAGA NA SALA SECRETA</CtaButton>
-            <p className="font-body text-[11px] text-muted uppercase tracking-widest">
-              🔒 Vagas limitadas · Acesso gratuito · 100% ao vivo
-            </p>
-          </motion.div>
         </div>
 
         {/* Photo */}
