@@ -1,7 +1,6 @@
 import { useState, useEffect } from 'react'
 import Reveal from './Reveal'
-
-const WEBHOOK_URL = 'https://wbn.araxa.app/webhook/receive-webhook'
+import { supabase } from '../lib/supabase'
 
 function applyWhatsAppMask(value) {
   const digits = value.replace(/\D/g, '').slice(0, 11)
@@ -47,11 +46,20 @@ const inputStyle = {
 const fields_config = [
   { name: 'nome',     label: 'NOME COMPLETO',      type: 'text',  placeholder: 'Dr. Wladmir Bonadio' },
   { name: 'email',    label: 'E-MAIL PROFISSIONAL', type: 'email', placeholder: 'seu@email.com.br' },
-  { name: 'whatsapp', label: 'WHATSAPP COM DDD',    type: 'tel',   placeholder: '(00) 00000-0000' },
+  { name: 'whatsapp', label: 'TELEFONE (WHATSAPP COM DDD)', type: 'tel', placeholder: '(00) 00000-0000' },
+  { name: 'atuacao',  label: 'QUAL SEU RAMO DE ATUAÇÃO?', type: 'text', placeholder: 'Ex: Direito Previdenciário, Trabalhista...' },
+  { name: 'cargo',    label: 'VOCÊ É O QUE NA EMPRESA?', type: 'text', placeholder: 'Ex: Sócio, Sócio-Fundador, Advogado Associado' },
+  { name: 'faturamento', label: 'QUAL FATURAMENTO MÉDIO DO ESCRITÓRIO?', type: 'select', options: [
+      'Ainda não faturo',
+      'Até R$ 10.000/mês',
+      'De R$ 10.000 a R$ 50.000/mês',
+      'De R$ 50.000 a R$ 100.000/mês',
+      'Mais de R$ 100.000/mês'
+  ]},
 ]
 
 export default function Form() {
-  const [fields, setFields] = useState({ nome: '', email: '', whatsapp: '' })
+  const [fields, setFields] = useState({ nome: '', email: '', whatsapp: '', atuacao: '', cargo: '', faturamento: '' })
   const [error, setError] = useState('')
   const [loading, setLoading] = useState(false)
   const [success, setSuccess] = useState(false)
@@ -78,18 +86,24 @@ export default function Form() {
     if (typeof window !== 'undefined' && window.gtag) window.gtag('event', 'generate_lead')
 
     try {
-      await fetch(WEBHOOK_URL, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          ...fields,
+      const { error: dbError } = await supabase
+        .from('leads')
+        .insert({
+          nome: fields.nome,
+          email: fields.email,
+          whatsapp: fields.whatsapp,
+          atuacao: fields.atuacao,
+          cargo: fields.cargo,
+          faturamento: fields.faturamento,
           evento: 'sala_secreta',
           source: window.location.href,
-          timestamp: new Date().toISOString(),
-        }),
-      })
+        })
+      
+      if (dbError) {
+        console.error('Database error:', dbError)
+      }
     } catch (err) {
-      console.error('Webhook error:', err)
+      console.error('Supabase error:', err)
     }
 
     setLoading(false)
@@ -163,22 +177,39 @@ export default function Form() {
               className="max-w-md mx-auto rounded-2xl p-8 md:p-10 shadow-card space-y-5"
               style={{ background: '#16171C', border: '1px solid rgba(255,255,255,0.06)' }}
             >
-              {fields_config.map(({ name, label, type, placeholder }) => (
+              {fields_config.map(({ name, label, type, placeholder, options }) => (
                 <div key={name} className="space-y-2">
                   <label className="block font-body font-bold text-[10px] uppercase tracking-[0.2em] text-v4-blue">
                     {label}
                   </label>
-                  <input
-                    type={type}
-                    name={name}
-                    required
-                    value={fields[name]}
-                    onChange={handleChange}
-                    placeholder={placeholder}
-                    className="w-full bg-v4-dark border border-v4-border rounded-lg px-4 py-4 text-cream-light text-sm placeholder:text-muted/40 outline-none transition-all"
-                    onFocus={e => { e.target.style.borderColor = inputStyle.focusBorder }}
-                    onBlur={e => { e.target.style.borderColor = inputStyle.blurBorder }}
-                  />
+                  {type === 'select' ? (
+                    <select
+                      name={name}
+                      required
+                      value={fields[name]}
+                      onChange={handleChange}
+                      className="w-full bg-v4-dark border border-v4-border rounded-lg px-4 py-4 text-cream-light text-sm outline-none transition-all"
+                      onFocus={e => { e.target.style.borderColor = inputStyle.focusBorder }}
+                      onBlur={e => { e.target.style.borderColor = inputStyle.blurBorder }}
+                    >
+                      <option value="" disabled>Selecione...</option>
+                      {options.map(opt => (
+                        <option key={opt} value={opt}>{opt}</option>
+                      ))}
+                    </select>
+                  ) : (
+                    <input
+                      type={type}
+                      name={name}
+                      required
+                      value={fields[name]}
+                      onChange={handleChange}
+                      placeholder={placeholder}
+                      className="w-full bg-v4-dark border border-v4-border rounded-lg px-4 py-4 text-cream-light text-sm placeholder:text-muted/40 outline-none transition-all"
+                      onFocus={e => { e.target.style.borderColor = inputStyle.focusBorder }}
+                      onBlur={e => { e.target.style.borderColor = inputStyle.blurBorder }}
+                    />
+                  )}
                 </div>
               ))}
 
