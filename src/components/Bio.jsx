@@ -23,7 +23,7 @@ export default function Bio() {
         <div className="grid md:grid-cols-2 gap-12 items-center">
           <Reveal delay={0.1}>
             <div className="flex flex-col items-center md:items-start">
-              <div className="w-24 h-24 rounded-full overflow-hidden border-2 border-[rgba(201,168,76,0.3)] mb-5 bg-v4-card">
+              <div className="w-24 h-24 rounded-full overflow-hidden border-2 border-[rgba(139,92,246,0.3)] mb-5 bg-v4-card">
                 <img
                   src="/Foto Perfil.jpg"
                   alt="Dr. Wladmir Bonadio Filho"
@@ -51,7 +51,7 @@ export default function Bio() {
                 {credentials.map((c, i) => (
                   <div key={i} className="flex items-start gap-3">
                     <div className="w-5 h-5 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5"
-                         style={{ background: 'rgba(201,168,76,0.1)', border: '1px solid rgba(201,168,76,0.3)' }}>
+                         style={{ background: 'rgba(139,92,246,0.1)', border: '1px solid rgba(139,92,246,0.3)' }}>
                       <span className="text-v4-blue text-xs">→</span>
                     </div>
                     <p className="text-muted text-sm leading-relaxed">{c}</p>
@@ -59,7 +59,7 @@ export default function Bio() {
                 ))}
               </div>
               <p className="text-v4-blue text-sm font-body font-semibold pt-2 italic"
-                 style={{ borderLeft: '3px solid rgba(201,168,76,0.4)', paddingLeft: '12px' }}>
+                 style={{ borderLeft: '3px solid rgba(139,92,246,0.4)', paddingLeft: '12px' }}>
                 "Quem ensina é um advogado que faz — não um coach sem OAB."
               </p>
             </div>

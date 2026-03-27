@@ -26,7 +26,7 @@ export default function MetricsBar() {
         ))}
       </div>
       <div className="absolute inset-x-0 bottom-0 h-[1px]"
-           style={{ background: 'linear-gradient(90deg, transparent, rgba(201,168,76,0.3), transparent)' }} />
+           style={{ background: 'linear-gradient(90deg, transparent, rgba(139,92,246,0.3), transparent)' }} />
     </section>
   )
 }

@@ -40,11 +40,11 @@ export default function SocialProof() {
         <div className="grid md:grid-cols-3 gap-5">
           {cases.map((c, i) => (
             <Reveal key={i} delay={i * 0.1}>
-              <div className="bg-v4-card border border-v4-border rounded-xl p-7 hover:border-[rgba(201,168,76,0.3)] hover:-translate-y-1 transition-all duration-200 h-full flex flex-col relative overflow-hidden">
+              <div className="bg-v4-card border border-v4-border rounded-xl p-7 hover:border-[rgba(139,92,246,0.3)] hover:-translate-y-1 transition-all duration-200 h-full flex flex-col relative overflow-hidden">
                 <div className="absolute inset-x-0 top-0 h-[2px]"
-                     style={{ background: 'linear-gradient(90deg, transparent, rgba(201,168,76,0.4), transparent)' }} />
+                     style={{ background: 'linear-gradient(90deg, transparent, rgba(139,92,246,0.4), transparent)' }} />
                 <div className="flex items-center gap-3 mb-5">
-                  <div className="w-9 h-9 rounded-full bg-[rgba(201,168,76,0.08)] border border-[rgba(201,168,76,0.2)] flex items-center justify-center flex-shrink-0">
+                  <div className="w-9 h-9 rounded-full bg-[rgba(139,92,246,0.08)] border border-[rgba(139,92,246,0.2)] flex items-center justify-center flex-shrink-0">
                     <span>⚖️</span>
                   </div>
                   <p className="text-muted text-xs font-body font-semibold uppercase tracking-wider">{c.area}</p>

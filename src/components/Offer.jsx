@@ -27,8 +27,8 @@ export default function Offer() {
         <div className="space-y-4">
           {items.map((item, i) => (
             <Reveal key={i} delay={i * 0.07}>
-              <div className="flex items-start gap-5 bg-v4-card border border-v4-border rounded-xl px-6 py-5 group hover:border-[rgba(201,168,76,0.3)] transition-all duration-300">
-                <div className="w-10 h-10 rounded-lg bg-[rgba(201,168,76,0.08)] border border-[rgba(201,168,76,0.15)] flex items-center justify-center flex-shrink-0 text-lg group-hover:scale-110 transition-transform">
+              <div className="flex items-start gap-5 bg-v4-card border border-v4-border rounded-xl px-6 py-5 group hover:border-[rgba(139,92,246,0.3)] transition-all duration-300">
+                <div className="w-10 h-10 rounded-lg bg-[rgba(139,92,246,0.08)] border border-[rgba(139,92,246,0.15)] flex items-center justify-center flex-shrink-0 text-lg group-hover:scale-110 transition-transform">
                   {item.icon}
                 </div>
                 <div>

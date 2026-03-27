@@ -40,7 +40,7 @@ function useCountdown() {
 function pad(n) { return String(n).padStart(2, '0') }
 
 const inputStyle = {
-  focusBorder: 'rgba(201,168,76,0.5)',
+  focusBorder: 'rgba(139,92,246,0.5)',
   blurBorder: 'rgba(255,255,255,0.06)',
 }
 
@@ -99,7 +99,7 @@ export default function Form() {
   return (
     <section id="formulario" className="py-24 px-5 border-t border-v4-border relative overflow-hidden"
              style={{ background: 'linear-gradient(135deg, #08080A 0%, #0F1014 100%)' }}>
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[80%] h-[80%] bg-[#C9A84C05] blur-[140px] rounded-full pointer-events-none" />
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[80%] h-[80%] bg-[#8B5CF605] blur-[140px] rounded-full pointer-events-none" />
 
       <div className="relative z-10 max-w-content mx-auto">
         <Reveal>
@@ -122,7 +122,7 @@ export default function Form() {
         <Reveal delay={0.1}>
           <div className="flex justify-center mb-10">
             <div className="rounded-xl px-8 py-5 flex items-center gap-3 md:gap-6"
-                 style={{ background: 'rgba(201,168,76,0.07)', border: '1px solid rgba(201,168,76,0.2)' }}>
+                 style={{ background: 'rgba(139,92,246,0.07)', border: '1px solid rgba(139,92,246,0.2)' }}>
               <p className="text-muted text-[10px] uppercase tracking-widest font-body font-bold hidden md:block">
                 Vagas se encerram em:
               </p>
@@ -143,7 +143,7 @@ export default function Form() {
         {success ? (
           <Reveal>
             <div className="max-w-md mx-auto text-center rounded-2xl p-12"
-                 style={{ background: '#16171C', border: '1px solid rgba(201,168,76,0.3)' }}>
+                 style={{ background: '#16171C', border: '1px solid rgba(139,92,246,0.3)' }}>
               <div className="text-5xl mb-6">🎉</div>
               <h3 className="font-heading text-cream-light text-2xl mb-4" style={{ fontWeight: 700 }}>
                 Vaga garantida!
@@ -191,8 +191,8 @@ export default function Form() {
               <button
                 type="submit"
                 disabled={loading}
-                className="w-full font-body font-bold text-[#0A0A0A] text-sm uppercase tracking-[0.1em] py-5 rounded-[6px] cursor-pointer transition-all duration-300 hover:-translate-y-[2px] disabled:opacity-50 disabled:cursor-not-allowed"
-                style={{ background: 'linear-gradient(135deg, #C9A84C, #B8942F)', boxShadow: '0 4px 30px rgba(201,168,76,0.3)' }}
+                className="w-full font-body font-bold text-white text-sm uppercase tracking-[0.1em] py-5 rounded-[6px] cursor-pointer transition-all duration-300 hover:-translate-y-[2px] disabled:opacity-50 disabled:cursor-not-allowed"
+                style={{ background: 'linear-gradient(135deg, #7C3AED, #2a1359)', boxShadow: '0 4px 30px rgba(139,92,246,0.35)' }}
               >
                 {loading ? 'PROCESSANDO...' : 'QUERO MINHA VAGA NA SALA SECRETA'}
               </button>

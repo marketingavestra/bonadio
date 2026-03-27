@@ -9,14 +9,16 @@ export default {
           dark:    '#0F1014',
           card:    '#16171C',
           border:  'rgba(255,255,255,0.06)',
-          blue:    '#C9A84C',   // gold — replaces blue throughout
-          accent:  '#E8C95A',   // gold-bright
-          gold:    '#C9A84C',
+          blue:    '#8B5CF6',   // purple — accent principal
+          accent:  '#A78BFA',   // purple-bright
+          gold:    '#8B5CF6',   // alias para compatibilidade
         },
-        gold: {
-          DEFAULT: '#C9A84C',
-          bright:  '#E8C95A',
-          dim:     'rgba(201,168,76,0.15)',
+        purple: {
+          deep:    '#2a1359',
+          mid:     '#4B21A6',
+          DEFAULT: '#8B5CF6',
+          bright:  '#A78BFA',
+          dim:     'rgba(139,92,246,0.12)',
         },
         navy: {
           darkest: '#06060A',
@@ -33,8 +35,8 @@ export default {
           glow:    'rgba(39,174,96,0.50)',
         },
         sky: {
-          DEFAULT: '#C9A84C',
-          light:   '#C9A84C',
+          DEFAULT: '#8B5CF6',
+          light:   '#8B5CF6',
         },
         cream: {
           DEFAULT: '#E8E6E1',
@@ -43,10 +45,11 @@ export default {
         muted: 'rgba(232,230,225,0.55)',
       },
       boxShadow: {
-        'glow-gold':  '0 4px 40px rgba(201,168,76,0.35)',
-        'glow-blue':  '0 4px 40px rgba(201,168,76,0.35)',
-        'glow-green': '0 0 40px rgba(39,174,96,0.30)',
-        'card':       '0 4px 32px rgba(0,0,0,0.50)',
+        'glow-gold':   '0 4px 40px rgba(139,92,246,0.35)',
+        'glow-blue':   '0 4px 40px rgba(139,92,246,0.35)',
+        'glow-purple': '0 4px 40px rgba(139,92,246,0.40)',
+        'glow-green':  '0 0 40px rgba(39,174,96,0.30)',
+        'card':        '0 4px 32px rgba(0,0,0,0.50)',
       },
       fontFamily: {
         heading: ['"Playfair Display"', 'Montserrat', 'serif'],
@@ -60,8 +63,8 @@ export default {
       },
       keyframes: {
         'pulse-cta': {
-          '0%, 100%': { boxShadow: '0 4px 30px rgba(201,168,76,0.25)' },
-          '50%':       { boxShadow: '0 4px 44px rgba(201,168,76,0.50)' },
+          '0%, 100%': { boxShadow: '0 4px 30px rgba(139,92,246,0.30)' },
+          '50%':       { boxShadow: '0 4px 44px rgba(139,92,246,0.55)' },
         },
       },
     },

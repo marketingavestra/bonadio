@@ -48,8 +48,8 @@ export default function FAQ() {
               <div
                 className={`rounded-xl border transition-all duration-200 overflow-hidden ${
                   open === i
-                    ? 'border-[rgba(201,168,76,0.3)] bg-v4-dark'
-                    : 'border-v4-border bg-v4-dark hover:border-[rgba(201,168,76,0.2)]'
+                    ? 'border-[rgba(139,92,246,0.3)] bg-v4-dark'
+                    : 'border-v4-border bg-v4-dark hover:border-[rgba(139,92,246,0.2)]'
                 }`}
               >
                 <button

@@ -5,8 +5,8 @@ export default function Hero() {
   return (
     <section className="relative min-h-[88vh] flex items-center bg-v4-black overflow-hidden py-24 md:py-32">
       {/* Gold glow effects */}
-      <div className="absolute top-0 right-0 w-[55%] h-[65%] bg-[#C9A84C09] blur-[130px] rounded-full -mr-20 -mt-20" />
-      <div className="absolute bottom-0 left-0 w-[35%] h-[35%] bg-[#C9A84C06] blur-[100px] rounded-full -ml-10 -mb-10" />
+      <div className="absolute top-0 right-0 w-[55%] h-[65%] bg-[#8B5CF609] blur-[130px] rounded-full -mr-20 -mt-20" />
+      <div className="absolute bottom-0 left-0 w-[35%] h-[35%] bg-[#8B5CF606] blur-[100px] rounded-full -ml-10 -mb-10" />
 
       <div className="relative z-10 max-w-content mx-auto px-5 w-full grid md:grid-cols-2 gap-14 items-center">
         <div>
@@ -17,7 +17,7 @@ export default function Hero() {
             className="mb-8"
           >
             <span className="inline-block px-6 py-2 rounded-full font-body font-semibold text-[11px] uppercase tracking-[2.5px] text-v4-blue"
-                  style={{ background: 'rgba(201,168,76,0.1)', border: '1px solid rgba(201,168,76,0.25)' }}>
+                  style={{ background: 'rgba(139,92,246,0.1)', border: '1px solid rgba(139,92,246,0.25)' }}>
               Sala Secreta · Evento Exclusivo
             </span>
           </motion.div>

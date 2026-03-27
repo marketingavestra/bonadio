@@ -31,7 +31,7 @@ export default function Problem() {
         <div className="grid md:grid-cols-2 gap-4 mb-12">
           {attempts.map((a, i) => (
             <Reveal key={i} delay={i * 0.05}>
-              <div className="flex items-start gap-4 bg-v4-dark border border-v4-border rounded-lg px-6 py-5 group hover:border-[rgba(201,168,76,0.2)] transition-colors">
+              <div className="flex items-start gap-4 bg-v4-dark border border-v4-border rounded-lg px-6 py-5 group hover:border-[rgba(139,92,246,0.2)] transition-colors">
                 <span className="text-[#C0392B] font-black flex-shrink-0 mt-0.5">✕</span>
                 <p className="text-muted text-sm leading-relaxed group-hover:text-cream-light transition-colors">
                   {a}
@@ -44,7 +44,7 @@ export default function Problem() {
         <Reveal delay={0.3}>
           <div className="bg-v4-dark border border-v4-border rounded-xl p-10 text-center relative overflow-hidden group">
             <div className="absolute inset-x-0 top-0 h-[2px]"
-                 style={{ background: 'linear-gradient(90deg, transparent, rgba(201,168,76,0.4), transparent)' }} />
+                 style={{ background: 'linear-gradient(90deg, transparent, rgba(139,92,246,0.4), transparent)' }} />
             <p className="text-cream-light text-base md:text-lg font-body font-semibold leading-relaxed mb-3">
               Caixa apertado, ansiedade todo dia 5 e a sensação de que{' '}
               <span className="text-v4-blue">falta algo que ninguém te ensinou.</span>

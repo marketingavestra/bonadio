@@ -43,7 +43,7 @@ export default function HowItWorks() {
                         style={{ fontSize: 'clamp(48px, 6vw, 64px)', fontWeight: 700 }}>
                     {s.n}
                   </span>
-                  <div className="h-[1px] flex-1 bg-v4-border group-hover:bg-[rgba(201,168,76,0.4)] transition-colors duration-500" />
+                  <div className="h-[1px] flex-1 bg-v4-border group-hover:bg-[rgba(139,92,246,0.4)] transition-colors duration-500" />
                 </div>
                 <h3 className="font-heading text-cream-light text-lg mb-4 group-hover:text-v4-blue transition-colors"
                     style={{ fontWeight: 700 }}>

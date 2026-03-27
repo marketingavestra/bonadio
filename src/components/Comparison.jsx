@@ -58,10 +58,10 @@ export default function Comparison() {
 
           {/* Garanta */}
           <Reveal delay={0.2}>
-            <div className="bg-v4-dark rounded-xl p-8 border border-[rgba(201,168,76,0.25)] h-full relative overflow-hidden">
-              <div className="absolute inset-x-0 top-0 h-[2px]" style={{ background: 'linear-gradient(90deg, transparent, #C9A84C, transparent)' }} />
+            <div className="bg-v4-dark rounded-xl p-8 border border-[rgba(139,92,246,0.25)] h-full relative overflow-hidden">
+              <div className="absolute inset-x-0 top-0 h-[2px]" style={{ background: 'linear-gradient(90deg, transparent, #8B5CF6, transparent)' }} />
               <div className="flex items-center gap-3 mb-7">
-                <div className="w-8 h-8 rounded-full bg-gold-dim border border-[rgba(201,168,76,0.3)] flex items-center justify-center flex-shrink-0">
+                <div className="w-8 h-8 rounded-full bg-purple-dim border border-[rgba(139,92,246,0.3)] flex items-center justify-center flex-shrink-0">
                   <span className="text-v4-blue font-black text-sm leading-none">✓</span>
                 </div>
                 <h3 className="font-body font-bold text-[11px] uppercase tracking-[0.25em] text-v4-blue">
