@@ -2,6 +2,8 @@ import { useState, useEffect } from 'react'
 import Reveal from './Reveal'
 import { supabase } from '../lib/supabase'
 
+const WEBHOOK_URL = 'https://n8n.araxa.app/webhook/receive-webhook'
+
 function applyWhatsAppMask(value) {
   const digits = value.replace(/\D/g, '').slice(0, 11)
   if (digits.length <= 2) return digits
@@ -86,24 +88,32 @@ export default function Form() {
     if (typeof window !== 'undefined' && window.gtag) window.gtag('event', 'generate_lead')
 
     try {
-      const { error: dbError } = await supabase
-        .from('leads')
-        .insert({
-          nome: fields.nome,
-          email: fields.email,
-          whatsapp: fields.whatsapp,
-          atuacao: fields.atuacao,
-          cargo: fields.cargo,
-          faturamento: fields.faturamento,
-          evento: 'sala_secreta',
-          source: window.location.href,
-        })
-      
+      const payload = {
+        nome: fields.nome,
+        email: fields.email,
+        whatsapp: fields.whatsapp,
+        atuacao: fields.atuacao,
+        cargo: fields.cargo,
+        faturamento: fields.faturamento,
+        evento: 'sala_secreta',
+        source: window.location.href,
+      }
+
+      // 1) Envia para o Supabase
+      const { error: dbError } = await supabase.from('leads').insert(payload)
       if (dbError) {
         console.error('Database error:', dbError)
       }
+
+      // 2) Dispara o Webhook (produção)
+      await fetch(WEBHOOK_URL, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ ...payload, timestamp: new Date().toISOString() }),
+      }).catch(err => console.error('Webhook error:', err))
+
     } catch (err) {
-      console.error('Supabase error:', err)
+      console.error('Submit error:', err)
     }
 
     setLoading(false)
