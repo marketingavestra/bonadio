@@ -65,7 +65,7 @@ export default function Hero() {
           initial={{ opacity: 0, scale: 0.9 }}
           animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 0.8 }}
-          className="relative hidden md:block"
+          className="relative"
         >
           <div className="aspect-[4/5] rounded-2xl bg-v4-dark border border-v4-border relative overflow-hidden group shadow-2xl">
             <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent z-10" />
@@ -74,16 +74,7 @@ export default function Hero() {
               alt="Dr. Wladmir Bonadio Filho"
               className="absolute inset-0 w-full h-full object-cover grayscale-[0.15] group-hover:grayscale-0 transition-all duration-700"
             />
-            <div className="absolute bottom-8 left-8 right-8 z-20 space-y-3 font-body">
-              <div className="bg-v4-black/70 backdrop-blur-md border border-v4-border rounded-xl p-4">
-                <p className="text-[10px] text-v4-blue uppercase font-bold tracking-widest mb-1">+10 ANOS</p>
-                <p className="text-sm font-semibold text-cream-light">Experiência Jurídica</p>
-              </div>
-              <div className="bg-v4-black/70 backdrop-blur-md border border-v4-border rounded-xl p-4 md:translate-x-10">
-                <p className="text-[10px] text-v4-blue uppercase font-bold tracking-widest mb-1">METODOLOGIA EXCLUSIVA</p>
-                <p className="text-sm font-semibold text-cream-light">Gestão Pós-Vendas</p>
-              </div>
-            </div>
+
           </div>
         </motion.div>
       </div>
