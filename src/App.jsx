@@ -49,11 +49,11 @@ export default function App() {
       {/* 13 — Bio de autoridade */}
       <Bio />
 
-      {/* 14 — FAQ */}
-      <FAQ />
-
-      {/* 15 — Formulário + Countdown */}
+      {/* 14 — Formulário + Countdown */}
       <Form />
+
+      {/* 15 — FAQ */}
+      <FAQ />
 
       {/* 16 — Footer */}
       <Footer />
