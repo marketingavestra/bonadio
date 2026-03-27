@@ -25,7 +25,7 @@ export default function Bio() {
             <div className="flex flex-col items-center md:items-start">
               <div className="w-24 h-24 rounded-full overflow-hidden border-2 border-[rgba(139,92,246,0.3)] mb-5 bg-v4-card">
                 <img
-                  src="/Foto Perfil.jpg"
+                  src="/Foto_Expert_Wladmir.png"
                   alt="Dr. Wladmir Bonadio Filho"
                   className="w-full h-full object-cover"
                 />
