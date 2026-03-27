@@ -1,13 +1,13 @@
 import Reveal from './Reveal'
 import CtaButton from './CtaButton'
 
-export default function CtaBreak({ text = 'QUERO APLICAR O MÉTODO NA MINHA PRÁTICA' }) {
+export default function CtaBreak({ text = 'QUERO MINHA VAGA NA SALA SECRETA' }) {
   return (
-    <section className="bg-navy py-14 px-5 text-center">
+    <section className="bg-v4-black py-14 px-5 text-center border-t border-v4-border">
       <Reveal>
         <CtaButton large>{text}</CtaButton>
-        <p className="text-xs text-muted mt-3">
-          ✓ Acesso imediato &nbsp;·&nbsp; ✓ R$47 com garantia de 7 dias
+        <p className="font-body text-[10px] text-muted mt-3 uppercase tracking-widest">
+          🔒 100% gratuito · Ao vivo · Sem replay
         </p>
       </Reveal>
     </section>

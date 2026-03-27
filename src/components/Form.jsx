@@ -1,7 +1,6 @@
-import { useState, useRef } from 'react'
+import { useState, useEffect } from 'react'
 import Reveal from './Reveal'
 
-const CHECKOUT_URL = 'https://hub.la/r/playbook-pdf'
 const WEBHOOK_URL = 'https://wbn.araxa.app/webhook/receive-webhook'
 
 function applyWhatsAppMask(value) {
@@ -12,10 +11,51 @@ function applyWhatsAppMask(value) {
   return value
 }
 
+function useCountdown() {
+  const [time, setTime] = useState({ h: 23, m: 59, s: 59 })
+
+  useEffect(() => {
+    const KEY = 'sala_secreta_deadline'
+    let deadline = parseInt(localStorage.getItem(KEY) || '0')
+    if (!deadline || deadline < Date.now()) {
+      deadline = Date.now() + 23 * 3600 * 1000 + 59 * 60 * 1000
+      localStorage.setItem(KEY, String(deadline))
+    }
+    const tick = () => {
+      const diff = Math.max(0, deadline - Date.now())
+      setTime({
+        h: Math.floor(diff / 3600000),
+        m: Math.floor((diff % 3600000) / 60000),
+        s: Math.floor((diff % 60000) / 1000),
+      })
+    }
+    tick()
+    const id = setInterval(tick, 1000)
+    return () => clearInterval(id)
+  }, [])
+
+  return time
+}
+
+function pad(n) { return String(n).padStart(2, '0') }
+
+const inputStyle = {
+  focusBorder: 'rgba(201,168,76,0.5)',
+  blurBorder: 'rgba(255,255,255,0.06)',
+}
+
+const fields_config = [
+  { name: 'nome',     label: 'NOME COMPLETO',      type: 'text',  placeholder: 'Dr. Wladmir Bonadio' },
+  { name: 'email',    label: 'E-MAIL PROFISSIONAL', type: 'email', placeholder: 'seu@email.com.br' },
+  { name: 'whatsapp', label: 'WHATSAPP COM DDD',    type: 'tel',   placeholder: '(00) 00000-0000' },
+]
+
 export default function Form() {
   const [fields, setFields] = useState({ nome: '', email: '', whatsapp: '' })
   const [error, setError] = useState('')
   const [loading, setLoading] = useState(false)
+  const [success, setSuccess] = useState(false)
+  const { h, m, s } = useCountdown()
 
   function handleChange(e) {
     const { name, value } = e.target
@@ -30,145 +70,145 @@ export default function Form() {
     setError('')
     if (!fields.nome.trim()) { setError('Informe seu nome.'); return }
     if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(fields.email)) { setError('E-mail inválido.'); return }
+    const rawWa = fields.whatsapp.replace(/\D/g, '')
+    if (rawWa.length < 10) { setError('Informe seu WhatsApp com DDD.'); return }
 
     setLoading(true)
-    
-    // Pixel/GTM tracking
     if (typeof window !== 'undefined' && window.fbq) window.fbq('track', 'Lead')
     if (typeof window !== 'undefined' && window.gtag) window.gtag('event', 'generate_lead')
 
     try {
-      // Send to Webhook
       await fetch(WEBHOOK_URL, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
           ...fields,
+          evento: 'sala_secreta',
           source: window.location.href,
-          timestamp: new Date().toISOString()
-        })
+          timestamp: new Date().toISOString(),
+        }),
       })
     } catch (err) {
-      console.error('Webhook Error:', err)
-      // We continue to checkout even if webhook fails to avoid losing the sale
+      console.error('Webhook error:', err)
     }
 
-    // Final redirection
-    window.location.href = CHECKOUT_URL
+    setLoading(false)
+    setSuccess(true)
   }
 
   return (
-    <section id="formulario" className="py-24 px-5 bg-v4-black border-t border-v4-border relative overflow-hidden">
-      {/* Background glow behind form */}
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[120%] h-[120%] bg-[#27AE6008] blur-[140px] rounded-full pointer-events-none" />
+    <section id="formulario" className="py-24 px-5 border-t border-v4-border relative overflow-hidden"
+             style={{ background: 'linear-gradient(135deg, #08080A 0%, #0F1014 100%)' }}>
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[80%] h-[80%] bg-[#C9A84C05] blur-[140px] rounded-full pointer-events-none" />
 
       <div className="relative z-10 max-w-content mx-auto">
         <Reveal>
           <div className="text-center mb-12">
-            <h2 className="font-heading font-black text-white uppercase tracking-tighter leading-none mb-4"
-                style={{ fontSize: 'clamp(28px, 5vw, 48px)' }}>
-              GARANTA SEU <span className="text-v4-blue text-glow-blue">ACESSO AGORA</span>
+            <p className="font-body font-bold text-[10px] tracking-[0.3em] uppercase text-v4-blue mb-4">
+              GARANTA SUA VAGA
+            </p>
+            <h2 className="font-heading text-cream-light leading-tight mb-4"
+                style={{ fontSize: 'clamp(24px, 4.5vw, 44px)', fontWeight: 700 }}>
+              Chega de caixa apertado. Entre na Sala Secreta e descubra como injetar{' '}
+              <span className="text-v4-blue">R$50 mil</span> no seu escritório.
             </h2>
-            <p className="text-gray-400 text-sm md:text-base max-w-lg mx-auto leading-relaxed">
-              Preencha seus dados abaixo para receber o Playbook completo e os bônus exclusivos no seu e-mail.
+            <p className="text-muted text-sm md:text-base max-w-lg mx-auto">
+              40 minutos. Uma metodologia. Zero gasto em tráfego.
             </p>
           </div>
         </Reveal>
 
+        {/* Countdown */}
         <Reveal delay={0.1}>
-          <form
-            onSubmit={handleSubmit}
-            className="max-w-md mx-auto bg-v4-card border border-v4-border rounded-2xl p-8 md:p-10 shadow-card space-y-6"
-          >
-            {/* Nome */}
-            <div className="space-y-2">
-              <label className="block font-heading font-black text-[10px] uppercase tracking-[0.2em] text-v4-blue">
-                NOME COMPLETO
-              </label>
-              <input
-                type="text"
-                name="nome"
-                required
-                value={fields.nome}
-                onChange={handleChange}
-                placeholder="Ex: Dr. Wladmir Bonadio"
-                className="w-full bg-v4-dark border border-v4-border rounded-lg px-4 py-4 text-white text-sm placeholder:text-gray-600 focus:outline-none focus:border-v4-blue focus:ring-1 focus:ring-v4-blue/20 transition-all"
-              />
-            </div>
-
-            {/* E-mail */}
-            <div className="space-y-2">
-              <label className="block font-heading font-black text-[10px] uppercase tracking-[0.2em] text-v4-blue">
-                E-MAIL PROFISSIONAL
-              </label>
-              <input
-                type="email"
-                name="email"
-                required
-                value={fields.email}
-                onChange={handleChange}
-                placeholder="seu@email.com.br"
-                className="w-full bg-v4-dark border border-v4-border rounded-lg px-4 py-4 text-white text-sm placeholder:text-gray-600 focus:outline-none focus:border-v4-blue focus:ring-1 focus:ring-v4-blue/20 transition-all"
-              />
-            </div>
-
-            {/* WhatsApp */}
-            <div className="space-y-2">
-              <label className="block font-heading font-black text-[10px] uppercase tracking-[0.2em] text-v4-blue flex justify-between">
-                <span>WHATSAPP</span>
-                <span className="text-gray-600 font-normal normal-case italic">Opcional</span>
-              </label>
-              <input
-                type="tel"
-                name="whatsapp"
-                value={fields.whatsapp}
-                onChange={handleChange}
-                placeholder="(00) 00000-0000"
-                className="w-full bg-v4-dark border border-v4-border rounded-lg px-4 py-4 text-white text-sm placeholder:text-gray-600 focus:outline-none focus:border-v4-blue focus:ring-1 focus:ring-v4-blue/20 transition-all"
-              />
-            </div>
-
-            {/* Price Preview */}
-            <div className="pt-2">
-              <div className="flex items-end justify-between border-t border-v4-border pt-6 mb-2">
-                 <p className="text-gray-500 text-[10px] uppercase font-black tracking-widest">SUBTOTAL</p>
-                 <p className="text-gray-500 text-xs line-through">R$ 385,00</p>
-              </div>
-              <div className="flex items-end justify-between">
-                 <p className="text-white text-[10px] uppercase font-black tracking-widest">TOTAL HOJE</p>
-                 <p className="text-success text-3xl font-black leading-none">R$ 47,00</p>
-              </div>
-            </div>
-
-            {error && (
-              <p className="bg-red-500/10 border border-red-500/20 text-red-500 text-xs py-3 px-4 rounded-lg text-center font-bold">
-                ⚠️ {error}
+          <div className="flex justify-center mb-10">
+            <div className="rounded-xl px-8 py-5 flex items-center gap-3 md:gap-6"
+                 style={{ background: 'rgba(201,168,76,0.07)', border: '1px solid rgba(201,168,76,0.2)' }}>
+              <p className="text-muted text-[10px] uppercase tracking-widest font-body font-bold hidden md:block">
+                Vagas se encerram em:
               </p>
-            )}
-
-            <button
-              type="submit"
-              disabled={loading}
-              className="w-full bg-success hover:bg-success-hover text-white font-heading font-black text-sm uppercase tracking-[0.1em] py-5 rounded-lg border-0 cursor-pointer shadow-glow-green hover:-translate-y-1 transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed group"
-            >
-              <span className="relative z-10">
-                {loading ? 'PROCESSANDO...' : 'LIBERAR MEU ACESSO IMEDIATO'}
-              </span>
-            </button>
-
-            <div className="flex flex-col items-center gap-3 pt-2">
-              <p className="text-[10px] text-gray-500 uppercase tracking-widest flex items-center gap-2">
-                <span className="w-1 h-1 rounded-full bg-success animate-pulse" />
-                SISTEMA DISPONÍVEL PARA DOWNLOAD AGORA
-              </p>
-              <div className="flex justify-center gap-4 opacity-40 grayscale">
-                 <img src="https://logodownload.org/wp-content/uploads/2014/10/cartao-visa-logo.png" alt="Visa" className="h-3" />
-                 <img src="https://logodownload.org/wp-content/uploads/2014/07/mastercard-logo-2.png" alt="Mastercard" className="h-3" />
-                 <img src="https://logodownload.org/wp-content/uploads/2015/05/pix-logo-1.png" alt="Pix" className="h-3" />
-              </div>
+              {[{ v: h, l: 'h' }, { v: m, l: 'm' }, { v: s, l: 's' }].map(({ v, l }, i) => (
+                <div key={i} className="flex items-end gap-1">
+                  <span className="font-heading text-v4-blue leading-none tabular-nums"
+                        style={{ fontSize: 'clamp(28px, 4vw, 40px)', fontWeight: 700 }}>
+                    {pad(v)}
+                  </span>
+                  <span className="text-muted text-[10px] uppercase font-body mb-1">{l}</span>
+                  {i < 2 && <span className="text-v4-blue font-black text-2xl mb-0.5 ml-1">:</span>}
+                </div>
+              ))}
             </div>
-          </form>
+          </div>
         </Reveal>
+
+        {success ? (
+          <Reveal>
+            <div className="max-w-md mx-auto text-center rounded-2xl p-12"
+                 style={{ background: '#16171C', border: '1px solid rgba(201,168,76,0.3)' }}>
+              <div className="text-5xl mb-6">🎉</div>
+              <h3 className="font-heading text-cream-light text-2xl mb-4" style={{ fontWeight: 700 }}>
+                Vaga garantida!
+              </h3>
+              <p className="text-muted text-sm leading-relaxed mb-2">
+                Você receberá o link de acesso no e-mail e WhatsApp informados.
+              </p>
+              <p className="text-v4-blue text-sm font-body font-semibold">
+                Fique de olho na sua caixa de entrada.
+              </p>
+            </div>
+          </Reveal>
+        ) : (
+          <Reveal delay={0.15}>
+            <form
+              onSubmit={handleSubmit}
+              className="max-w-md mx-auto rounded-2xl p-8 md:p-10 shadow-card space-y-5"
+              style={{ background: '#16171C', border: '1px solid rgba(255,255,255,0.06)' }}
+            >
+              {fields_config.map(({ name, label, type, placeholder }) => (
+                <div key={name} className="space-y-2">
+                  <label className="block font-body font-bold text-[10px] uppercase tracking-[0.2em] text-v4-blue">
+                    {label}
+                  </label>
+                  <input
+                    type={type}
+                    name={name}
+                    required
+                    value={fields[name]}
+                    onChange={handleChange}
+                    placeholder={placeholder}
+                    className="w-full bg-v4-dark border border-v4-border rounded-lg px-4 py-4 text-cream-light text-sm placeholder:text-muted/40 outline-none transition-all"
+                    onFocus={e => { e.target.style.borderColor = inputStyle.focusBorder }}
+                    onBlur={e => { e.target.style.borderColor = inputStyle.blurBorder }}
+                  />
+                </div>
+              ))}
+
+              {error && (
+                <p className="bg-red-500/10 border border-red-500/20 text-red-400 text-xs py-3 px-4 rounded-lg text-center font-bold">
+                  ⚠️ {error}
+                </p>
+              )}
+
+              <button
+                type="submit"
+                disabled={loading}
+                className="w-full font-body font-bold text-[#0A0A0A] text-sm uppercase tracking-[0.1em] py-5 rounded-[6px] cursor-pointer transition-all duration-300 hover:-translate-y-[2px] disabled:opacity-50 disabled:cursor-not-allowed"
+                style={{ background: 'linear-gradient(135deg, #C9A84C, #B8942F)', boxShadow: '0 4px 30px rgba(201,168,76,0.3)' }}
+              >
+                {loading ? 'PROCESSANDO...' : 'QUERO MINHA VAGA NA SALA SECRETA'}
+              </button>
+
+              {/* Trust badges */}
+              <div className="grid grid-cols-2 gap-2 pt-1">
+                {['100% gratuito', 'Ao vivo e exclusivo', 'Vagas limitadas', 'Sem replay'].map((b, i) => (
+                  <div key={i} className="flex items-center gap-1.5">
+                    <span className="text-v4-blue text-xs">✓</span>
+                    <span className="text-muted text-[10px] font-body font-semibold uppercase tracking-wide">{b}</span>
+                  </div>
+                ))}
+              </div>
+            </form>
+          </Reveal>
+        )}
       </div>
     </section>
   )

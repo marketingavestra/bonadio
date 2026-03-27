@@ -3,18 +3,18 @@ import Reveal from './Reveal'
 const steps = [
   {
     n: '01',
-    title: 'Baixe e leia o documento',
-    desc: 'Em 47 minutos você absorve o método completo — sistema de posicionamento, captação e qualificação de leads dentro das regras da OAB.',
+    title: 'Inscreva-se gratuitamente',
+    desc: 'Preencha seus dados abaixo e garanta sua vaga na Sala Secreta. São poucas vagas para manter a qualidade da aula.',
   },
   {
     n: '02',
-    title: 'Implemente os 3 pilares',
-    desc: 'Bio otimizada, conteúdo educativo que atrai lead qualificado e triagem automática via WhatsApp Business + Calendly.',
+    title: 'Assista os 40 minutos ao vivo',
+    desc: 'Eu vou mostrar na tela a metodologia completa, com exemplos reais e números. Sem enrolação, sem pitch de 2 horas.',
   },
   {
     n: '03',
-    title: 'Receba 10 leads/mês via orgânico',
-    desc: 'Leads que chegam com intenção real de contratar. Sem depender de indicação. Sem gastar com tráfego pago no início.',
+    title: 'Aplique e veja o caixa crescer',
+    desc: 'Com o passo a passo que você vai receber, é possível implementar o método em 7 dias e ver os primeiros resultados nas próximas semanas.',
   },
 ]
 
@@ -24,12 +24,12 @@ export default function HowItWorks() {
       <div className="max-w-content mx-auto">
         <Reveal>
           <div className="text-center mb-20">
-            <p className="font-heading font-black text-[10px] tracking-[0.3em] uppercase text-v4-blue mb-4">
-              PROCESSO DE IMPLEMENTAÇÃO
+            <p className="font-body font-bold text-[10px] tracking-[0.3em] uppercase text-v4-blue mb-4">
+              COMO FUNCIONA
             </p>
-            <h2 className="font-heading font-black text-white uppercase tracking-tighter leading-none"
-                style={{ fontSize: 'clamp(28px, 4.5vw, 42px)' }}>
-              3 PASSOS PARA ATRAIR <br/><span className="text-v4-blue">10 LEADS POR MÊS</span>
+            <h2 className="font-heading text-cream-light leading-tight"
+                style={{ fontSize: 'clamp(26px, 4vw, 40px)', fontWeight: 700 }}>
+              3 passos simples
             </h2>
           </div>
         </Reveal>
@@ -39,16 +39,18 @@ export default function HowItWorks() {
             <Reveal key={i} delay={i * 0.1}>
               <div className="group">
                 <div className="flex items-center gap-4 mb-6">
-                  <span className="font-heading font-black text-5xl md:text-6xl text-v4-blue/20 group-hover:text-v4-blue transition-colors duration-500 leading-none">
+                  <span className="font-heading text-v4-blue/20 group-hover:text-v4-blue transition-colors duration-500 leading-none"
+                        style={{ fontSize: 'clamp(48px, 6vw, 64px)', fontWeight: 700 }}>
                     {s.n}
                   </span>
-                  <div className="h-[1px] flex-1 bg-v4-border group-hover:bg-v4-blue/40 transition-colors duration-500" />
+                  <div className="h-[1px] flex-1 bg-v4-border group-hover:bg-[rgba(201,168,76,0.4)] transition-colors duration-500" />
                 </div>
-                <h3 className="font-heading font-black text-white text-lg uppercase tracking-tight mb-4 group-hover:text-v4-blue transition-colors">
+                <h3 className="font-heading text-cream-light text-lg mb-4 group-hover:text-v4-blue transition-colors"
+                    style={{ fontWeight: 700 }}>
                   {s.title}
                 </h3>
-                <p className="text-gray-400 text-sm leading-relaxed group-hover:text-gray-300 transition-colors italic">
-                  "{s.desc}"
+                <p className="text-muted text-sm leading-relaxed group-hover:text-cream/70 transition-colors">
+                  {s.desc}
                 </p>
               </div>
             </Reveal>

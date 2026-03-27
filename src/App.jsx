@@ -1,18 +1,17 @@
 import BadgeBar    from './components/BadgeBar'
+import UrgencyBar  from './components/UrgencyBar'
 import Hero        from './components/Hero'
 import MetricsBar  from './components/MetricsBar'
-import HowItWorks  from './components/HowItWorks'
 import Problem     from './components/Problem'
 import Mechanism   from './components/Mechanism'
-import SocialProof from './components/SocialProof'
-import CtaBreak    from './components/CtaBreak'
+import HowItWorks  from './components/HowItWorks'
 import Offer       from './components/Offer'
-import BonusStack  from './components/BonusStack'
-import PriceReveal from './components/PriceReveal'
-import Guarantee   from './components/Guarantee'
+import CtaBreak    from './components/CtaBreak'
+import Comparison  from './components/Comparison'
+import SocialProof from './components/SocialProof'
 import Bio         from './components/Bio'
+import FAQ         from './components/FAQ'
 import Form        from './components/Form'
-import FinalCTA    from './components/FinalCTA'
 import Footer      from './components/Footer'
 
 export default function App() {
@@ -21,14 +20,14 @@ export default function App() {
       {/* 01 — Filtro de elegibilidade */}
       <BadgeBar />
 
-      {/* 02 — Hero / Hook */}
+      {/* 02 — Urgência */}
+      <UrgencyBar />
+
+      {/* 03 — Hero */}
       <Hero />
 
-      {/* 03 — Métricas de credibilidade */}
+      {/* 04 — Métricas de credibilidade */}
       <MetricsBar />
-
-      {/* 04 — Como funciona */}
-      <HowItWorks />
 
       {/* 05 — Agitação do problema */}
       <Problem />
@@ -36,32 +35,32 @@ export default function App() {
       {/* 06 — Mecanismo único */}
       <Mechanism />
 
-      {/* 07 — Prova social */}
-      <SocialProof />
+      {/* 07 — Como funciona (3 passos) */}
+      <HowItWorks />
 
-      {/* 08 — CTA #2 */}
-      <CtaBreak text="QUERO APLICAR O MÉTODO NA MINHA PRÁTICA" />
-
-      {/* 09 — Oferta core */}
+      {/* 08 — O que vai aprender */}
       <Offer />
 
-      {/* 10 — Stack de bônus */}
-      <BonusStack />
+      {/* 09 — CTA #2 */}
+      <CtaBreak text="QUERO MINHA VAGA NA SALA SECRETA" />
 
-      {/* 11 — Reveal de preço */}
-      <PriceReveal />
+      {/* 10 — Comparação: Evite vs Garanta */}
+      <Comparison />
 
-      {/* 12 — Garantia */}
-      <Guarantee />
+      {/* 11 — Cases / Resultados reais */}
+      <SocialProof />
+
+      {/* 12 — CTA #3 */}
+      <CtaBreak text="GARANTIR MINHA VAGA AGORA" />
 
       {/* 13 — Bio de autoridade */}
       <Bio />
 
-      {/* 14 — Formulário → checkout */}
-      <Form />
+      {/* 14 — FAQ */}
+      <FAQ />
 
-      {/* 15 — CTA final */}
-      <FinalCTA />
+      {/* 15 — Formulário + Countdown */}
+      <Form />
 
       {/* 16 — Footer */}
       <Footer />

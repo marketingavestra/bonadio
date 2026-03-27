@@ -3,78 +3,99 @@ import CtaButton from './CtaButton'
 
 export default function Hero() {
   return (
-    <section className="relative min-h-[85vh] flex items-center bg-v4-black overflow-hidden py-24 md:py-32">
-      {/* Glow Effects */}
-      <div className="absolute top-0 right-0 w-[60%] h-[70%] bg-[#0070FF11] blur-[120px] rounded-full -mr-20 -mt-20" />
-      <div className="absolute bottom-0 left-0 w-[40%] h-[40%] bg-[#27AE6008] blur-[100px] rounded-full -ml-10 -mb-10" />
+    <section className="relative min-h-[88vh] flex items-center bg-v4-black overflow-hidden py-24 md:py-32">
+      {/* Gold glow effects */}
+      <div className="absolute top-0 right-0 w-[55%] h-[65%] bg-[#C9A84C09] blur-[130px] rounded-full -mr-20 -mt-20" />
+      <div className="absolute bottom-0 left-0 w-[35%] h-[35%] bg-[#C9A84C06] blur-[100px] rounded-full -ml-10 -mb-10" />
 
-      <div className="relative z-10 max-w-content mx-auto px-5 w-full grid md:grid-cols-2 gap-16 items-center">
+      <div className="relative z-10 max-w-content mx-auto px-5 w-full grid md:grid-cols-2 gap-14 items-center">
         <div>
+          {/* Eyebrow badge */}
+          <motion.div
+            initial={{ opacity: 0, y: -10 }}
+            animate={{ opacity: 1, y: 0 }}
+            className="mb-8"
+          >
+            <span className="inline-block px-6 py-2 rounded-full font-body font-semibold text-[11px] uppercase tracking-[2.5px] text-v4-blue"
+                  style={{ background: 'rgba(201,168,76,0.1)', border: '1px solid rgba(201,168,76,0.25)' }}>
+              Sala Secreta · Evento Exclusivo
+            </span>
+          </motion.div>
+
+          {/* Label */}
+          <motion.p
+            initial={{ opacity: 0, x: -10 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ delay: 0.05 }}
+            className="font-body text-muted text-sm mb-4 leading-relaxed"
+          >
+            Se você é advogado e quer previsibilidade financeira...
+          </motion.p>
+
+          {/* H1 */}
           <motion.div
             initial={{ opacity: 0, x: -20 }}
             animate={{ opacity: 1, x: 0 }}
-            className="mb-8"
+            transition={{ delay: 0.1 }}
+            className="mb-7"
           >
-            <h1 className="font-heading font-black text-3xl md:text-5xl text-white leading-tight uppercase tracking-tighter">
-              DÊ O PRIMEIRO PASSO PARA <span className="text-v4-blue">CONTRATAR 10 NOVOS CLIENTES</span> EM 2025
+            <h1 className="font-heading text-cream-light leading-[1.15]"
+                style={{ fontSize: 'clamp(32px, 5.5vw, 58px)', fontWeight: 700 }}>
+              Em 40 minutos, descubra como{' '}
+              <span className="text-v4-blue">injetar R$50 mil a mais</span>{' '}
+              no caixa do seu escritório
             </h1>
           </motion.div>
 
+          {/* Subheadline */}
           <motion.p
             initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.2 }}
-            className="text-lg md:text-xl text-gray-400 mb-10 max-w-xl leading-relaxed"
+            className="font-body text-muted text-sm md:text-base mb-10 max-w-xl leading-relaxed"
           >
-            Aprenda como o Dr. Wladmir Bonadio Filho utiliza o sistema orgânico de captação pelo Instagram para
-            atrair leads qualificados <strong className="text-white">sem violar as regras da OAB</strong>.
+            A metodologia de <strong className="text-cream-light">Gestão Pós-Vendas</strong> que escritórios de advocacia
+            estão usando para transformar clientes antigos em receita recorrente — enquanto seus concorrentes
+            continuam caçando leads frios.
           </motion.p>
 
+          {/* CTA */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.4 }}
+            transition={{ delay: 0.35 }}
             className="flex flex-col items-start gap-4"
           >
-            <CtaButton large>TESTAR ESTRATÉGIA</CtaButton>
-            <div className="flex items-center gap-3">
-              <div className="w-12 h-12 rounded-full border border-v4-blue/40 flex items-center justify-center p-1 bg-v4-blue/10 overflow-hidden">
-                <span className="text-[10px] text-v4-blue font-bold text-center leading-tight">30 DIAS GARANTIA</span>
-              </div>
-              <p className="text-xs text-muted max-w-[200px]">
-                Acesso imediato ao Playbook + Guia de Execução rápida.
-              </p>
-            </div>
+            <CtaButton large>QUERO MINHA VAGA NA SALA SECRETA</CtaButton>
+            <p className="font-body text-[11px] text-muted uppercase tracking-widest">
+              🔒 Vagas limitadas · Acesso gratuito · 100% ao vivo
+            </p>
           </motion.div>
         </div>
 
-        {/* Placeholder / Photo Mockup */}
+        {/* Photo */}
         <motion.div
           initial={{ opacity: 0, scale: 0.9 }}
           animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 0.8 }}
           className="relative hidden md:block"
         >
-          <div className="aspect-[4/5] rounded-3xl bg-neutral-900 border border-v4-border relative overflow-hidden group shadow-2xl">
-            {/* Overlay Gradient (stays on top of the image) */}
+          <div className="aspect-[4/5] rounded-2xl bg-v4-dark border border-v4-border relative overflow-hidden group shadow-2xl">
             <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent z-10" />
-            
-            <img 
-              src="/Foto Perfil.jpg" 
-              alt="Dr. Wladmir Bonadio Filho" 
-              className="absolute inset-0 w-full h-full object-cover grayscale-[0.2] group-hover:grayscale-0 transition-all duration-700"
+            <img
+              src="/Foto Perfil.jpg"
+              alt="Dr. Wladmir Bonadio Filho"
+              className="absolute inset-0 w-full h-full object-cover grayscale-[0.15] group-hover:grayscale-0 transition-all duration-700"
             />
-
-            {/* Lawyer Portrait Text with stats */}
-            <div className="absolute bottom-8 left-8 right-8 z-20 space-y-4 font-body">
-               <div className="bg-v4-black/60 backdrop-blur-md border border-white/10 rounded-xl p-4">
-                  <p className="text-[10px] text-v4-blue uppercase font-black mb-1">+12 ANOS</p>
-                  <p className="text-sm font-bold text-white uppercase tracking-tight">Experiência Jurídica</p>
-               </div>
-               <div className="bg-v4-black/60 backdrop-blur-md border border-white/10 rounded-xl p-4 md:translate-x-12">
-                  <p className="text-[10px] text-success uppercase font-black mb-1">+1.000 LEADS</p>
-                  <p className="text-sm font-bold text-white uppercase tracking-tight">Gerados pelo Instagram</p>
-               </div>
+            <div className="absolute bottom-8 left-8 right-8 z-20 space-y-3 font-body">
+              <div className="bg-v4-black/70 backdrop-blur-md border border-v4-border rounded-xl p-4">
+                <p className="text-[10px] text-v4-blue uppercase font-bold tracking-widest mb-1">+10 ANOS</p>
+                <p className="text-sm font-semibold text-cream-light">Experiência Jurídica</p>
+              </div>
+              <div className="bg-v4-black/70 backdrop-blur-md border border-v4-border rounded-xl p-4 md:translate-x-10">
+                <p className="text-[10px] text-v4-blue uppercase font-bold tracking-widest mb-1">METODOLOGIA EXCLUSIVA</p>
+                <p className="text-sm font-semibold text-cream-light">Gestão Pós-Vendas</p>
+              </div>
             </div>
           </div>
         </motion.div>

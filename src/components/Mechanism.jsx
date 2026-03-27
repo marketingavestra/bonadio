@@ -2,69 +2,61 @@ import Reveal from './Reveal'
 
 export default function Mechanism() {
   return (
-    <section className="bg-navy py-20 px-5">
+    <section className="bg-v4-dark py-24 px-5 border-t border-v4-border">
       <div className="max-w-content mx-auto">
         <Reveal>
-          <p className="font-heading font-bold text-xs tracking-widest uppercase text-sky-light mb-3 text-center">
-            O mecanismo
-          </p>
-          <h2 className="font-heading font-black text-cream-light text-center mb-6"
-              style={{ fontSize: 'clamp(22px, 3.5vw, 36px)' }}>
-            O que 99% dos advogados não sabe sobre{' '}
-            <span className="text-sky-light">captar no Instagram</span>
-          </h2>
+          <div className="text-center mb-14">
+            <p className="font-body font-bold text-[10px] tracking-[0.3em] uppercase text-v4-blue mb-4">
+              O MECANISMO
+            </p>
+            <h2 className="font-heading text-cream-light leading-tight mb-6"
+                style={{ fontSize: 'clamp(26px, 4vw, 40px)', fontWeight: 700 }}>
+              O que 99% dos advogados não sabe:{' '}
+              <span className="text-v4-blue">o dinheiro está nos clientes que você já tem</span>
+            </h2>
+          </div>
         </Reveal>
 
         <Reveal delay={0.1}>
           <p className="text-muted text-base text-center max-w-2xl mx-auto mb-12 leading-relaxed">
-            O erro não é postar pouco. É postar sem <strong className="text-cream">intenção de captação</strong>.{' '}
-            O algoritmo do Instagram prioriza conteúdo que gera interação real —
-            e o lead qualificado <em>já está procurando</em> um advogado da sua área antes de te seguir.
+            Enquanto todo mundo está gastando fortunas para captar leads novos, escritórios inteligentes estão aplicando{' '}
+            <strong className="text-cream-light">gestão pós-vendas</strong> e extraindo receita de quem já confia neles.
           </p>
         </Reveal>
 
-        <div className="grid md:grid-cols-2 gap-6 mb-10">
-          <Reveal delay={0.15}>
-            <div className="bg-navy-medium rounded-2xl p-8 border border-sky-light/15">
-              <div className="inline-block bg-sky-light/10 border border-sky-light/30 text-sky-light font-heading font-bold text-xs tracking-widest uppercase px-3 py-1 rounded-full mb-5">
-                Mecanismo Único
-              </div>
-              <h3 className="font-heading font-bold text-cream-light text-lg mb-3">
-                OAB Lead Qualifier
-              </h3>
-              <p className="text-muted text-sm leading-relaxed">
-                Sistema que cruza dados públicos — OAB ativo, presença digital, CNPJ —
-                e classifica cada lead em <strong className="text-gold">Quente / Morno / Frio</strong>{' '}
-                antes de você gastar um segundo do seu tempo.
-              </p>
-            </div>
-          </Reveal>
+        {/* Metodologia box */}
+        <Reveal delay={0.2}>
+          <div className="rounded-xl p-8 md:p-12 relative overflow-hidden"
+               style={{ background: '#16171C', border: '1px solid rgba(201,168,76,0.25)' }}>
+            <div className="absolute inset-x-0 top-0 h-[2px]"
+                 style={{ background: 'linear-gradient(90deg, transparent, #C9A84C, transparent)' }} />
 
-          <Reveal delay={0.22}>
-            <div className="bg-navy-medium rounded-2xl p-8 border border-sky-light/15">
-              <div className="inline-block bg-gold/10 border border-gold/30 text-gold font-heading font-bold text-xs tracking-widest uppercase px-3 py-1 rounded-full mb-5">
-                Resultado
+            <div className="flex flex-col md:flex-row gap-8 md:gap-12 items-start">
+              <div className="flex-shrink-0">
+                <span className="inline-block px-4 py-1.5 rounded-full font-body font-semibold text-[10px] uppercase tracking-[2px] text-v4-blue mb-4"
+                      style={{ background: 'rgba(201,168,76,0.1)', border: '1px solid rgba(201,168,76,0.25)' }}>
+                  Metodologia Exclusiva
+                </span>
+                <h3 className="font-heading text-cream-light text-xl md:text-2xl leading-snug"
+                    style={{ fontWeight: 700 }}>
+                  Gestão Pós-Vendas<br />
+                  <span className="text-v4-blue">para Escritórios<br />de Advocacia</span>
+                </h3>
               </div>
-              <h3 className="font-heading font-bold text-cream-light text-lg mb-3">
-                Você aborda só quem está pronto para contratar
-              </h3>
-              <p className="text-muted text-sm leading-relaxed">
-                Score ≥ 70 = lead quente, abordar hoje.{' '}
-                Score 45–69 = nutrir por 30 dias.{' '}
-                Score &lt; 45 = ignorar e poupar energia.{' '}
-                Resultado: <strong className="text-cream">conversão 12–22%</strong> vs 3–7% do mercado.
-              </p>
-            </div>
-          </Reveal>
-        </div>
 
-        <Reveal delay={0.3}>
-          <div className="bg-gradient-to-br from-navy-dark to-navy-mid rounded-2xl p-8 border border-sky-light/20">
-            <p className="text-cream-light text-sm leading-relaxed text-center max-w-xl mx-auto">
-              É por isso que um advogado com 3.000 seguidores consegue fechar mentoria de R$5.000
-              enquanto outro com 30.000 seguidores não consegue nem uma consulta gratuita.{' '}
-              <strong className="text-sky-light">O problema é o método, não o tamanho da audiência.</strong>
-            </p>
+              <div className="flex-1 space-y-4">
+                <p className="text-muted text-sm leading-relaxed">
+                  Um sistema estruturado para reativar clientes inativos, criar recorrência de honorários,
+                  gerar indicações qualificadas e multiplicar o ticket médio do escritório —
+                  tudo sem precisar de um único real em anúncios.
+                </p>
+                <p className="text-cream-light text-sm leading-relaxed font-body font-semibold"
+                   style={{ borderLeft: '3px solid #C9A84C', paddingLeft: '16px' }}>
+                  Na Sala Secreta, eu vou abrir a tela do meu computador e mostrar, passo a passo,
+                  exatamente como aplicar isso no seu escritório em menos de uma semana.
+                </p>
+              </div>
+            </div>
           </div>
         </Reveal>
       </div>

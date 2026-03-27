@@ -5,23 +5,27 @@ export default {
     extend: {
       colors: {
         v4: {
-          black:   '#000000',
-          dark:    '#0A0A0A',
-          card:    '#111111',
-          border:  'rgba(255,255,255,0.08)',
-          blue:    '#0070FF',
-          accent:  '#00A3FF',
-          gold:    '#F5A623',
-          green:   '#27AE60',
+          black:   '#08080A',
+          dark:    '#0F1014',
+          card:    '#16171C',
+          border:  'rgba(255,255,255,0.06)',
+          blue:    '#C9A84C',   // gold — replaces blue throughout
+          accent:  '#E8C95A',   // gold-bright
+          gold:    '#C9A84C',
+        },
+        gold: {
+          DEFAULT: '#C9A84C',
+          bright:  '#E8C95A',
+          dim:     'rgba(201,168,76,0.15)',
         },
         navy: {
-          darkest: '#050505',
-          dark:    '#0A0A0A',
-          DEFAULT: '#0D0D0D',
-          mid:     '#111111',
-          medium:  '#161616',
-          light:   '#1A1A1A',
-          lighter: '#222222',
+          darkest: '#06060A',
+          dark:    '#08080A',
+          DEFAULT: '#0F1014',
+          mid:     '#16171C',
+          medium:  '#1C1D23',
+          light:   '#222330',
+          lighter: '#2A2B35',
         },
         success: {
           DEFAULT: '#27AE60',
@@ -29,24 +33,24 @@ export default {
           glow:    'rgba(39,174,96,0.50)',
         },
         sky: {
-          DEFAULT: '#333333',
-          light:   '#444444',
+          DEFAULT: '#C9A84C',
+          light:   '#C9A84C',
         },
         cream: {
-          DEFAULT: '#FFFFFF',
-          light:   '#F0F0F0',
+          DEFAULT: '#E8E6E1',
+          light:   '#E8E6E1',
         },
-        muted: 'rgba(255,255,255,0.6)',
-        gold:  '#F5A623',
+        muted: 'rgba(232,230,225,0.55)',
       },
       boxShadow: {
-        'glow-blue': '0 0 40px rgba(0,112,255,0.20)',
+        'glow-gold':  '0 4px 40px rgba(201,168,76,0.35)',
+        'glow-blue':  '0 4px 40px rgba(201,168,76,0.35)',
         'glow-green': '0 0 40px rgba(39,174,96,0.30)',
-        'card': '0 4px 32px rgba(0,0,0,0.50)',
+        'card':       '0 4px 32px rgba(0,0,0,0.50)',
       },
       fontFamily: {
-        heading: ['Montserrat', 'sans-serif'],
-        body:    ['Inter', 'sans-serif'],
+        heading: ['"Playfair Display"', 'Montserrat', 'serif'],
+        body:    ['"DM Sans"', 'Inter', 'sans-serif'],
       },
       maxWidth: {
         content: '880px',
@@ -56,8 +60,8 @@ export default {
       },
       keyframes: {
         'pulse-cta': {
-          '0%, 100%': { boxShadow: '0 6px 28px rgba(224,224,208,0.22)' },
-          '50%':       { boxShadow: '0 8px 44px rgba(224,224,208,0.44)' },
+          '0%, 100%': { boxShadow: '0 4px 30px rgba(201,168,76,0.25)' },
+          '50%':       { boxShadow: '0 4px 44px rgba(201,168,76,0.50)' },
         },
       },
     },
