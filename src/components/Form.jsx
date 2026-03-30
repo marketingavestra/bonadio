@@ -177,6 +177,7 @@ export default function Form() {
 
         <Reveal delay={0.15}>
           <form
+            id="sala-secreta-form"
             onSubmit={handleSubmit}
             className="max-w-md mx-auto rounded-2xl p-8 md:p-10 shadow-card space-y-5"
             style={{ background: '#16171C', border: '1px solid rgba(255,255,255,0.06)' }}
