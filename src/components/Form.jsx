@@ -128,7 +128,7 @@ export default function Form() {
     }
 
     // Redireciona para a página de obrigado de acordo com o tier
-    window.location.href = `/?obrigado=${tier}`
+    window.location.href = `/sala-secreta?obrigado=${tier}`
   }
 
   return (

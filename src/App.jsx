@@ -17,13 +17,22 @@ import ObrigadoQuente from './pages/ObrigadoQuente'
 import ObrigadoMorno  from './pages/ObrigadoMorno'
 import ObrigadoFrio   from './pages/ObrigadoFrio'
 
-// ─── Roteamento por query param ───────────────────────────────────────────
-// /?obrigado=quente  →  Lead qualificado (urgência alta + alto faturamento)
-// /?obrigado=morno   →  Lead morno
-// /?obrigado=frio    →  Lead frio
+// ─── Roteamento por pathname + query param ─────────────────────────────────
+// /            →  redireciona para /sala-secreta
+// /sala-secreta            →  Landing page principal
+// /sala-secreta?obrigado=quente  →  Lead qualificado
+// /sala-secreta?obrigado=morno   →  Lead morno
+// /sala-secreta?obrigado=frio    →  Lead frio
+const PATHNAME = window.location.pathname
 const OBRIGADO = new URLSearchParams(window.location.search).get('obrigado')
 
 export default function App() {
+  // Redireciona raiz para /sala-secreta
+  if (PATHNAME === '/' || PATHNAME === '') {
+    window.location.replace('/sala-secreta')
+    return null
+  }
+
   if (OBRIGADO === 'quente') return <ObrigadoQuente />
   if (OBRIGADO === 'morno')  return <ObrigadoMorno />
   if (OBRIGADO === 'frio')   return <ObrigadoFrio />
