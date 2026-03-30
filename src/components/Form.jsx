@@ -94,8 +94,29 @@ export default function Form() {
     if (!fields.urgencia)                                      { setError('Selecione o nível de urgência.'); return }
 
     setLoading(true)
-    if (typeof window !== 'undefined' && window.fbq) window.fbq('track', 'Lead')
-    if (typeof window !== 'undefined' && window.gtag) window.gtag('event', 'generate_lead')
+
+    // Envia user_data para o dataLayer (lido pelo GTM server-side via Stape)
+    if (typeof window !== 'undefined') {
+      window.dataLayer = window.dataLayer || []
+      window.dataLayer.push({
+        event: 'generate_lead',
+        user_data: {
+          email:        fields.email.trim().toLowerCase(),
+          phone_number: fields.whatsapp.replace(/\D/g, '').replace(/^0/, '').replace(/^55/, '+55').replace(/^(?!\+55)/, '+55'),
+          address: {
+            first_name: fields.nome.trim().split(' ')[0].toLowerCase(),
+            last_name:  fields.nome.trim().split(' ').slice(1).join(' ').toLowerCase(),
+          },
+        },
+        form_data: {
+          faturamento: fields.faturamento,
+          urgencia:    fields.urgencia,
+          atuacao:     fields.atuacao,
+          cargo:       fields.cargo,
+        },
+      })
+      if (window.fbq) window.fbq('track', 'Lead')
+    }
 
     const tier = calcLeadTier(fields.faturamento, fields.urgencia)
 
