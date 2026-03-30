@@ -189,6 +189,7 @@ export default function Form() {
                 </label>
                 {type === 'select' ? (
                   <select
+                    id={`form-field-${name}`}
                     name={name}
                     required
                     value={fields[name]}
@@ -205,6 +206,7 @@ export default function Form() {
                   </select>
                 ) : (
                   <input
+                    id={`form-field-${name}`}
                     type={type}
                     name={name}
                     required
