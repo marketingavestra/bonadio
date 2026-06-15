@@ -1,3 +1,5 @@
 {
-  "rewrites": [{ "source": "/(.*)", "destination": "/index.html" }]
+  "rewrites": [
+    { "source": "/((?!blog|sitemap\\.xml|robots\\.txt|llms\\.txt).*)", "destination": "/index.html" }
+  ]
 }
