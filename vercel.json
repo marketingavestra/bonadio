@@ -1,4 +1,7 @@
 {
+  "redirects": [
+    { "source": "/blog", "destination": "/blog/", "permanent": true }
+  ],
   "rewrites": [
     { "source": "/((?!blog|sitemap\\.xml|robots\\.txt|llms\\.txt).*)", "destination": "/index.html" }
   ]
