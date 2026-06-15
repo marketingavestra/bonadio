@@ -1,14 +1,20 @@
 const LINKS = [
   {
-    href: '/sala-secreta',
-    title: 'Sala Secreta — Aula Gratuita',
-    subtitle: 'Como injetar R$ 50 mil no caixa do seu escritório sem gastar com tráfego pago',
+    href: 'https://avestra.site',
+    title: 'IAs que uso em meu escritório',
+    subtitle: 'Conheça as ferramentas de inteligência artificial que aplico na advocacia',
     primary: true,
+    external: true,
   },
   {
     href: '/blog/',
     title: 'Blog Jurídico CLT',
     subtitle: 'Guias gratuitos sobre rescisão, horas extras, FGTS e seus direitos no trabalho',
+  },
+  {
+    href: '/sala-secreta',
+    title: 'Sala Secreta — Aula Gratuita',
+    subtitle: 'Como injetar R$ 50 mil no caixa do seu escritório sem gastar com tráfego pago',
   },
   {
     href: 'https://www.instagram.com/wladmirbonadiofilho_adv/',
